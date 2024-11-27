@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-import styles from "./UserForm.module.css";
+import styles from "./userForm.module.css";
 
 const UserForm = ({ user, onSubmit, onCancel, isAddingNew }) => {
   const [formData, setFormData] = useState({
@@ -21,7 +21,6 @@ const UserForm = ({ user, onSubmit, onCancel, isAddingNew }) => {
         company: { name: user.company?.name || "" },
       });
     } else {
-      // Reset form for adding new user
       setFormData({
         name: "",
         email: "",
@@ -71,7 +70,6 @@ const UserForm = ({ user, onSubmit, onCancel, isAddingNew }) => {
     setIsSubmitting(true);
 
     try {
-      // Prepare data to submit
       const submitData = {
         name: formData.name,
         email: formData.email,
@@ -79,7 +77,6 @@ const UserForm = ({ user, onSubmit, onCancel, isAddingNew }) => {
         company: { name: formData.company.name }
       };
 
-      // Call onSubmit with the prepared data
       await onSubmit(submitData);
     } catch (error) {
       alert(error.message);
